@@ -1,0 +1,51 @@
+package com.bmpl.testengine.user;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.ServletInputStream;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class LoginServlet
+ */
+@WebServlet("/login")
+public class LoginServlet extends HttpServlet {
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doPost(request, response);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		 /*ServletInputStream in = request.getInputStream(); 
+		 int singleChar = in.read();
+		 System.out.println(singleChar);
+		 StringBuilder sb = new StringBuilder();
+		 while(singleChar!=-1){
+			 sb.append((char)singleChar);
+			 singleChar = in.read();
+		 }
+		 System.out.println("Android Data is "+sb.toString());*/
+		String userid = request.getParameter("userid");
+		String pwd = request.getParameter("pwd");
+		PrintWriter out = response.getWriter();
+		System.out.println("Android Data is "+userid+" "+pwd);
+		if(userid.equals(pwd)) {
+		out.println("Welcome  "+userid);
+		}
+		else
+		{
+			out.println("Invalid Userid or password");
+		}
+		 out.close();
+		 //in.close();
+	}
+
+}
